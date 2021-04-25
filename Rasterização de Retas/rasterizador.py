@@ -59,6 +59,7 @@ if __name__ == '__main__':
 
     fig, figures = plt.subplots(ncols=3, figsize=(10, 10), dpi=300)
     fig = plt.subplots_adjust(wspace=0.3)
+
     figures[0].set_title('Resolução: 352x240')
     figures[1].set_title('Resolução: 720x480')
     figures[2].set_title('Resolução: 1280x960')
@@ -70,7 +71,8 @@ if __name__ == '__main__':
     ]
 
     fig1, figures1 = plt.subplots(ncols=3, figsize=(20, 20), dpi=300)
-    fig1 = plt.subplots_adjust(wspace=0.3)    
+    fig1 = plt.subplots_adjust(wspace=0.3)
+
     figures1[0].set_title('Resolução: 352x240')
     figures1[1].set_title('Resolução: 720x480')
     figures1[2].set_title('Resolução: 1280x960')
@@ -82,7 +84,8 @@ if __name__ == '__main__':
     ]
 
     fig2, figures2 = plt.subplots(ncols=3, figsize=(20, 20), dpi=300)
-    fig2 = plt.subplots_adjust(wspace=0.3)    
+    fig2 = plt.subplots_adjust(wspace=0.3)
+        
     figures2[0].set_title('Resolução: 352x240')
     figures2[1].set_title('Resolução: 720x480')
     figures2[2].set_title('Resolução: 1280x960')
