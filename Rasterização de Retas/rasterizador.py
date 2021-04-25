@@ -40,12 +40,13 @@ def rast(x1, y1, x2, y2, resX, resY):
     if deltaX > deltaY:
         for x in range(xMin, xMax):
             y = m * x + b
-            mat[math.floor(x)][math.floor(y)] = 1
+            pX, pY = produz_frag(x, y)
+            mat[math.floor(pX)][math.floor(pY)] = 1
     else:
         for y in range(yMin, yMax):
             x = (y - b) / m
-
-            mat[math.floor(x)][math.floor(y)] = 1
+            pX, pY = produz_frag(x, y)
+            mat[math.floor(pX)][math.floor(pY)] = 1
 
     return mat
 
