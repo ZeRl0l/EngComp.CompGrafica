@@ -19,7 +19,7 @@ def rast(x1, y1, x2, y2, resX, resY):
     if deltaX != 0 and deltaY != 0:
         m = deltaY / deltaX
     else:
-        m = np.inf
+        m = 0
 
     b = y2 - (m * x2)
 
@@ -30,36 +30,45 @@ def rast(x1, y1, x2, y2, resX, resY):
     xMax = math.floor(max(x1, x2))
 
     yMin = math.floor(min(y1, y2))
-    yMax = math.floor(min(y1, y2))
+    yMax = math.floor(max(y1, y2))
 
     mat = np.zeros((resX, resY), dtype=int)
 
     pX, pY = produz_frag(x, y)
     mat[math.floor(pX)][math.floor(pY)] = 1
 
-    if deltaX > deltaY:
+    if abs(deltaX) > abs(deltaY):
         for x in range(xMin, xMax):
-            y = m * x + b
+            if deltaY != 0:          
+                y = m * x + b
+            else: 
+                y = y1
+
             pX, pY = produz_frag(x, y)
-            mat[math.floor(pX)][math.floor(pY)] = 1
-    else:
+            mat[math.floor(pX)][math.floor(pY)] = 1                                
+    else: 
         for y in range(yMin, yMax):
-            x = (y - b) / m
+            if deltaX != 0:
+                x = (y - b) / m
+            else:
+                x = x1
+
             pX, pY = produz_frag(x, y)
-            mat[math.floor(pX)][math.floor(pY)] = 1
+            mat[math.floor(pX)][math.floor(pY)] = 1            
+
 
     return mat
 
 
 if __name__ == '__main__':
     matrix = [
-        rast(0, 0.2, 0.7, 0.3, 352, 240),
-        rast(0, 0.2, 0.7, 0.3, 720, 480),
-        rast(0, 0.2, 0.7, 0.3, 1280, 960)
+        rast(0.1, 0.1, 0.1, 0.9, 352, 240),
+        rast(0.1, 0.1, 0.1, 0.9, 720, 480),
+        rast(0.1, 0.1, 0.1, 0.9, 1280, 960)
     ]
 
     fig, figures = plt.subplots(ncols=3, figsize=(10, 10), dpi=300)
-    fig = plt.subplots_adjust(wspace=0.3)
+    fig = plt.subplots_adjust(wspace=0.35)
 
     figures[0].set_title('Resolução: 352x240')
     figures[1].set_title('Resolução: 720x480')
@@ -72,7 +81,7 @@ if __name__ == '__main__':
     ]
 
     fig1, figures1 = plt.subplots(ncols=3, figsize=(20, 20), dpi=300)
-    fig1 = plt.subplots_adjust(wspace=0.3)
+    fig1 = plt.subplots_adjust(wspace=0.35)
 
     figures1[0].set_title('Resolução: 352x240')
     figures1[1].set_title('Resolução: 720x480')
@@ -85,7 +94,7 @@ if __name__ == '__main__':
     ]
 
     fig2, figures2 = plt.subplots(ncols=3, figsize=(20, 20), dpi=300)
-    fig2 = plt.subplots_adjust(wspace=0.3)
+    fig2 = plt.subplots_adjust(wspace=0.35)
         
     figures2[0].set_title('Resolução: 352x240')
     figures2[1].set_title('Resolução: 720x480')
