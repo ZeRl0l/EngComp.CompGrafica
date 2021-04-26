@@ -100,6 +100,19 @@ if __name__ == '__main__':
     figures2[1].set_title('Resolução: 720x480')
     figures2[2].set_title('Resolução: 1280x960')
 
+    matrix3 = [
+        rast(0.1, 0.2, 0.83, 0.2, 352, 240),
+        rast(0.1, 0.2, 0.83, 0.2, 720, 480),
+        rast(0.1, 0.2, 0.83, 0.2, 1280, 960)
+    ]
+
+    fig3, figures3 = plt.subplots(ncols=3, figsize=(20, 20), dpi=300)
+    fig3 = plt.subplots_adjust(wspace=0.35)
+
+    figures3[0].set_title('Resolução: 352x240')
+    figures3[1].set_title('Resolução: 720x480')
+    figures3[2].set_title('Resolução: 1280x960')    
+
     for figure in range(0, len(matrix)):
         figures[figure].imshow(matrix[figure].T,
                                cmap=plt.cm.gray_r,
@@ -114,5 +127,10 @@ if __name__ == '__main__':
         figures2[figure].imshow(matrix2[figure].T,
                                 cmap=plt.cm.gray_r,
                                 origin="lower")
+    
+    for figure in range(0, len(matrix3)):
+        figures3[figure].imshow(matrix3[figure].T,
+                                cmap=plt.cm.gray_r,
+                                origin="lower")                                
 
     plt.show()
